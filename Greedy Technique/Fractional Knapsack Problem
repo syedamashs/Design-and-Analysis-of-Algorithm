@@ -1,0 +1,52 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        
+        System.out.println("Fractional KnapSack Problem !!\n");
+        
+        int[] profit={10,5,15,7,6,18,3};
+        int[] weight={2,3,5,7,1,4,1};
+        int n=profit.length;
+        int capacity=15;
+        final double[] pperw = new double[n];
+        for(int i=0;i<n;i++){
+                pperw[i]=(double) profit[i]/weight[i];
+            }
+        
+        //Sorting acc to Profit per weight
+        Integer [] indexes = new Integer[n];
+        for(int i =0;i<n;i++){
+            indexes[i]=i;
+        }
+        Arrays.sort(indexes, (i,j) -> Double.compare(pperw[j],pperw[i]));
+        
+        int[] sortedprofit = new int[n];
+        int[] sortedweight = new int[n];
+        double[] ppperw = new double[n];
+        
+        for(int i=0;i<n;i++){
+            sortedprofit[i]=profit[indexes[i]];
+            sortedweight[i]=weight[indexes[i]];
+            ppperw[i]=pperw[indexes[i]];
+        }
+        
+        profit=sortedprofit;
+        weight=sortedweight;
+        
+        //KnapSack Logic
+        double totalprofit=0;
+        for(int i=0;i<n;i++){
+            if(capacity>=weight[i]){
+                capacity-=weight[i];
+                totalprofit+=profit[i];
+            }
+            else{
+                double na=(double) capacity/weight[i];
+                totalprofit+= na*profit[i];
+                break;
+            }
+        }
+        System.out.println("Total Profit -- "+totalprofit);
+    }
+}
