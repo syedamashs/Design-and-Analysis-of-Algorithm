@@ -3,7 +3,7 @@ binarysearch(arr,n,data){
   r=n-1;
   mid=(l+r)/2;
 
-while(l<r){
+while(l<=r){
   if(arr[mid] == data){
     return mid;
   }
