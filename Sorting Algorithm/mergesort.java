@@ -28,7 +28,8 @@ merge(arr,lb,mid,ub){
       k++;
     }
 
-    k++;
+
+    
   }
 
   if(i>mid){
